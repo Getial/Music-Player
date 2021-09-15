@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="navbar">
+      <svg id="close" class="close inactive" height="40" width="40">
+        <path d="M12 12 l 16 16 M 12 28 l 16 -16" fill="none" stroke-width="3px" />
+      </svg>
+      <svg id="menuList" height="40" width="40">
+        <path d="M10 15 l 20 0 m 0 0 z" stroke-width="3px" />
+        <path d="M10 20 l 20 0 m 0 0 z" stroke-width="3px" />
+        <path d="M10 25 l 20 0 m 0 0 z" stroke-width="3px" />
+      </svg>
+    </div>
+    <div id="main" class="main">
+      <div class="album">
+        <img id="album" src="" alt="imagen del album de la cancion">
+      </div>
+      <div class="info">
+        <h3 id="title"></h3>
+        <p id="artist"></p>
+      </div>
+      <div id="barProgress" class="barProgress">
+        <div id="progress" class="progress"></div>
+      </div>
+      <div class="controls">
+        <audio id="aud" src=""></audio>
+        <div id="buttonBack" class="button back">
+          <div class="lineVertical"></div>
+          <div class="backTriangle"></div>
+        </div>
+        <div id="buttonPlay" class="button play">
+          <div id="pause" class="pause">
+            <div class="linePause"></div>
+            <div class="linePause"></div>
+          </div>
+          <div id="play" class="triangle"></div>
+        </div>
+        <div id="buttonNext" class="button next">
+          <div class="nextTriangle"></div>
+          <div class="lineVertical"></div>
+        </div>
+      </div>
+      <div class="options">
+        <svg height="40" width="40">
+          <path d="M 10 23 l 0 -3 a 10 10 0 0 1 10 -10 l 10 0 m 0 0 z M25 5 l 5 5 l -5 5"
+            style="fill: none; ; stroke-width: 2px;" />
+          <path d="M 30 17 l 0 3 a 10 10 0 0 1 -10 10 l -10 0 m 0 0 z M 15 25 l -5 5 l 5 5"
+            style="fill: none; ; stroke-width: 2px;" />
+        </svg>
+        <svg width="40" height="40">
+          <path d="M 5,15 a7,7 0 1,1 15,0 a7,7 0 1,1 15,0" style="fill: none; ; stroke-width: 2px;" />
+          <path d="M 5,14 a10,5 50 0,0, 7,12 l 8 6 l 8 -6 a5,10 40 0 0 7 -12"
+            style="fill: none; ; stroke-width: 2px;" />
+        </svg>
+        <svg height="40" width="40">
+          <path d="M 6 12 l 6 0 l 12 16 l 8 0 m 0 0 z M24 22 l 8 6 l -8 6" style="fill: none; ; stroke-width: 2px;" />
+          <path d="M 6 28 l 6 0 l 12 -16 l 8 0 m 0 0 z M24 6 l 8 6 -8 6 " style="fill: none; ; stroke-width: 2px;" />
+        </svg>
+      </div>
+    </div>
+    <div id="playlist" class="playlist inactive">
+      <div id="songsList" class="songsList">
+
+      </div>
+      <div class="controls">
+        <div id="buttonBack" class="button back">
+          <div class="lineVertical"></div>
+          <div class="backTriangle"></div>
+        </div>
+        <div id="buttonPlay" class="button play">
+          <div id="pause" class="pause">
+            <div class="linePause"></div>
+            <div class="linePause"></div>
+          </div>
+          <div id="play" class="triangle"></div>
+        </div>
+        <div id="buttonNext" class="button next">
+          <div class="nextTriangle"></div>
+          <div class="lineVertical"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="index.js"></script>
+</body>
+
+</html>

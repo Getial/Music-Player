@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+:root {
+  --blue: #EAF0F8;
+  --claro: #f0f0f0;
+  /* --principal: #53f9f6; */
+  --principal: #0CECDD;
+  --secundario: #14d8d2;
+  --background: #e0e5ec;
+  --light: rgba(255, 255, 255, 0.8);
+  --shadow:  rgba(165, 177, 198, 0.6);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  background: var(--background);
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  width: 350px;
+  max-width: 420px;
+  height: 700px;
+  max-height: 770px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 40px;
+  box-shadow: 8px 8px 16px var(--shadow),
+    -8px -8px 16px var(--light);
+}
+.navbar {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.navbar svg {
+  margin: 0 20px;
+  stroke: var(--principal)
+}
+.main {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.album {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.animation {
+  animation: spin 10s infinite linear;
+}
+.album img {
+  width: 200px;
+  border-radius: 50%;
+  box-shadow: 10px 10px 10px var(--shadow),
+    10px -10px 10px var(--shadow),
+    -10px -10px 7px var(--light),
+    -10px 10px 7px var(--light);
+}
+.info{
+  width: 100%;
+  height: 8%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+.barProgress {
+  display: flex;
+  align-items: center;
+  justify-content:left;
+  height: 15px;
+  width: 85%;
+  border: 1px solid var(--principal);
+  border-radius: 9px;
+  box-shadow: inset 1px 1px 2px #828589,
+              inset -1px -1px 2px #ffffff;
+}
+.progress {
+  height: 100%;
+  border-radius: 9px;
+  background: var(--principal);
+  box-shadow: inset 1px 1px 2px #3090af,
+              inset -1px -1px 2px #76feef;
+}
+.controls{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around; 
+}
+.back,
+.play,
+.next {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s box-shadow ease-in-out;
+  cursor: pointer;
+  border-radius: 50%;
+  box-shadow: -8px -8px 20px 0px #fff9, -6px -6px 6px 0px #fff9,
+    8px 8px 20px 0px #0001, 5px 5px 6px 0px #0001, inset 0px 0px 0px 0px #fff9,
+    inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
+    inset 0px 0px 0px 0px #0001;
+  margin: 0 2rem;
+  /* background-color: var(--blue); */
+}
+.play{
+  width: 80px;
+  height: 80px;
+  margin: 0;
+}
+.back .backTriangle {
+  width: 0;
+  height: 0;
+  border-right: 15px solid var(--principal);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.button--active .backTriangle {
+  border-right: 10px solid var(--principal);
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+}
+.lineVertical{
+  width: 4px;
+  height: 15px;
+  background-color: var(--principal);
+}
+.linePause{
+  width: 6px;
+  height: 20px;
+  background-color: var(--principal);
+}
+.button--active .lineVertical {
+  width: 3px;
+  height: 10px;
+}
+.play .triangle {
+  width: 0;
+  height: 0;
+  border-left: 30px solid var(--principal);
+  border-top: 16px solid transparent;
+  border-bottom: 16px solid transparent;
+  margin-left: 7px;
+  transition: 0.2s font-size ease-in-out;
+  opacity: 0.8;
+}
+.play .pause{
+  display: none;
+  width: 30%;
+  justify-content: space-around;
+}
+
+.next .nextTriangle {
+  width: 0;
+  height: 0;
+  border-left: 15px solid var(--principal);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+}
+.button--active .nextTriangle {
+  border-left: 10px solid var(--principal);
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+}
+.button--active {
+  box-shadow: 0px 0px 0px 0px #fff9, 0px 0px 0px 0px #fff9,
+    0px 0px 0px 0px #0001, 0px 0px 0px 0px #0001, inset -8px -8px 20px 0px #fff9,
+    inset -5px -5px 6px 0px #fff9, inset 8px 8px 20px 0px #0003,
+    inset 5px 5px 6px 0px #0001;
+}
+.options {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 30px;
+}
+.options svg {
+  stroke: var(--shadow);
+}
+.playlist {
+  width: 100%;
+  height: 90%;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.songsList {
+  width: 80%;
+  height: 80%;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow: scroll;
+  overflow-x: hidden;
+  border-radius: 10px;
+  box-shadow: 8px 8px 16px var(--shadow),
+    -8px -8px 16px var(--light);
+}
+.songsList:hover {
+  cursor: pointer;
+}
+.songsList::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.songsList::-webkit-scrollbar:vertical {
+  width:15px;
+}
+
+.songsList::-webkit-scrollbar-button:increment,.songsList::-webkit-scrollbar-button {
+  display: none;
+} 
+
+.songsList::-webkit-scrollbar:horizontal {
+  height: 10px;
+}
+
+.songsList::-webkit-scrollbar-thumb {
+  background-color: var(--shadow);
+  border-radius: 20px;
+  border: 4px solid var(--background);
+}
+
+.songsList::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+.song {
+  width: 90%;
+  height: 60px;
+  display: grid;
+  grid-template-columns: 2fr 8fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas: 
+    "album title"
+    "album artista";
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: solid 2px var(--shadow);
+}
+.song img {
+  width: 80%;
+  border-radius: 50%;
+  grid-area: album;
+}
+.inactive {
+  display: none;
+}
+.active {
+  display: block;
+}
+
+@keyframes spin {
+  0% {
+    transform:rotate(0deg);
+  }
+  100% {
+    transform:rotate(360deg);
+  }
+}
+
+
+/* https://cdn.dribbble.com/users/6134096/screenshots/14529540/media/9a73abd20803f26ca471ce70d94673b6.png?compress=1&resize=1600x1200 */
+/* https://code.tutsplus.com/es/tutorials/creating-stylish-and-responsive-progress-bars-using-progressbarjs--cms-30652 */

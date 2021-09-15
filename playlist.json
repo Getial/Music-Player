@@ -1,0 +1,72 @@
+[
+  {
+    "id": 0,
+    "artista": "Tiago PZK, LIT killah",
+    "title": "Entre Nosotros",
+    "url": "assets/music/Entre-Nosotros.opus",
+    "img": "assets/images/entrenosotros.jpeg"
+  },
+  {
+    "id": 1,
+    "artista": "Imagine Dragons",
+    "title": "Whatever It Takes",
+    "url": "assets/music/Imagine-Dragons-Whatever-It-Takes.opus",
+    "img": "assets/images/whateverittakes.jpg"
+  },
+  {
+    "id": 2,
+    "artista": "Duncan Laurence",
+    "title": "Arcade",
+    "url": "assets/music/Duncan-Laurence-Arcade.opus",
+    "img": "assets/images/arcade.jpg"
+  },
+  {
+    "id": 3,
+    "artista": "Besomorph",
+    "title": "Monster",
+    "url": "assets/music/Besomorph-Monster.opus",
+    "img": "assets/images/monster.jpg"
+  },
+  {
+    "id": 4,
+    "artista": "Hozier",
+    "title": "Take Me To Church",
+    "url": "assets/music/Hozier-Take-Me-To-Church.opus",
+    "img": "assets/images/takemetochurch.jpeg"
+  },
+  {
+    "id": 5,
+    "artista": "INNDRIVE",
+    "title": "Shake It",
+    "url": "assets/music/INNDRIVE-Shake-It.opus",
+    "img": "assets/images/shakeit.jpg"
+  },
+  {
+    "id": 6,
+    "artista": "Konoba",
+    "title": "On Our Knees",
+    "url": "assets/music/Konoba-On-Our-knees.opus",
+    "img": "assets/images/OnOurKnees.jpg"
+  },
+  {
+    "id": 7,
+    "artista": "C. Tangana ft. Niño de Elche x La Hungara",
+    "title": "Tu Me Dejaste De Querer",
+    "url": "assets/music/Tu-Me-Dejaste-De-Querer.opus",
+    "img": "assets/images/tumedejastedequerer.jpg"
+  },
+  {
+    "id": 8,
+    "artista": "Zatox",
+    "title": "The Godfather",
+    "url": "assets/music/Zatox-The-Godfather.opus",
+    "img": "assets/images/thegodfather.jpg"
+  },
+  {
+    "id": 9,
+    "artista": "Oliver Tree",
+    "title": "Life Goes On",
+    "url": "assets/music/Oliver-Tree-Life-Goes-On.opus",
+    "img": "assets/images/lifegoeson.jpg"
+  }
+]
