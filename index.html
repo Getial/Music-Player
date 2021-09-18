@@ -69,26 +69,30 @@
       </div>
     </div>
     <div id="playlist" class="playlist inactive">
-      <div id="songsList" class="songsList">
 
+      <div id="songsList" class="songsList">
       </div>
-      <div class="controls">
-        <div id="buttonBack" class="button back">
-          <div class="lineVertical"></div>
-          <div class="backTriangle"></div>
-        </div>
-        <div id="buttonPlay" class="button play">
-          <div id="pause" class="pause">
-            <div class="linePause"></div>
-            <div class="linePause"></div>
+
+      <div class="listControls">
+        <div class="songPlayingInfo">
+          <p class="songPlayingName" id="songPlayingName"></p>
+          <div class="listProgressBar">
+            <div class="listProgress" id="listProgress"></div>
           </div>
-          <div id="play" class="triangle"></div>
         </div>
-        <div id="buttonNext" class="button next">
-          <div class="nextTriangle"></div>
-          <div class="lineVertical"></div>
+        <div id="listButtonPlay" class="listButtonPlay">
+          <div id="listPause" class="listPause">
+            <div class="listLinePause"></div>
+            <div class="listLinePause"></div>
+          </div>
+          <div id="listPlay" class="listTriangle"></div>
+        </div>
+        <div id="listButtonNext" class="listButtonNext">
+          <div class="listNextTriangle"></div>
+          <div class="listLineVertical"></div>
         </div>
       </div>
+
     </div>
   </div>
   <script src="index.js"></script>

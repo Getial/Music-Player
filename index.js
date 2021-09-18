@@ -14,11 +14,19 @@ const buttonClose = document.getElementById("close");
 const main = document.getElementById("main");
 const listContainer = document.getElementById("playlist");
 const list = document.getElementById("songsList");
+const songPlayingName = document.getElementById("songPlayingName");
+const listButtonPlay = document.getElementById("listButtonPlay");
+const listPlay = document.getElementById("listPlay");
+const listPause = document.getElementById("listPause");
+const listButtonNext = document.getElementById("listButtonNext");
+const listProgress = document.getElementById("listProgress");
 
 
 //escuchador de eventos
 buttonPlay.addEventListener("click", reproducir);
+listButtonPlay.addEventListener("click", reproducir);
 buttonNext.addEventListener("click", next);
+listButtonNext.addEventListener("click", next);
 buttonBack.addEventListener("click", back);
 menuList.addEventListener("click", mostrarLista);
 buttonClose.addEventListener("click", mostrarLista);
@@ -40,6 +48,7 @@ fetch("./playlist.json")
     aud.src = playlist[actual].url;
     album.src=playlist[actual].img;
     title.innerText = playlist[actual].title;
+    songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;
     artist.innerText = playlist[actual].artista;
     let html = "";
     data.forEach(song => {
@@ -68,8 +77,10 @@ function reproducir() {
 
 function next() {
   buttonNext.classList.toggle("button--active");
+  listButtonNext.classList.toggle("button--active");
   setTimeout(() => {
     buttonNext.classList.toggle("button--active");
+    listButtonNext.classList.toggle("button--active");
   }, 200);
 
   if(actual < playlist.length - 1) {
@@ -100,10 +111,11 @@ function actualizarCancion(actual) {
   aud.src=playlist[actual].url;
   album.src=playlist[actual].img;
   title.innerText = playlist[actual].title;
-  artist.innerText = playlist[actual].artista;
+  songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;  artist.innerText = playlist[actual].artista;
   aud.play();
   progress = 0;
   progressBar.style.width = `${progress}%`;
+  listProgress.style.width = `${progress}%`;
   togglePlay();
 }
 
@@ -112,13 +124,17 @@ function togglePlay () {
     buttonPlay.classList.add("button--active");
     album.classList.add("animation");
     play.style.display = "none";
+    listPlay.style.display = "none";
     pause.style.display = "flex";
+    listPause.style.display = "flex";
     runProgressBar = setInterval(runBar, 100);
   } else if(aud.paused) {
     buttonPlay.classList.remove("button--active");
     album.classList.remove("animation");
     play.style.display = "block";
+    listPlay.style.display = "block";
     pause.style.display = "none";
+    listPause.style.display = "none";
     clearInterval(runProgressBar);
   }
 }
@@ -126,11 +142,14 @@ function togglePlay () {
 function runBar(){
   progress = Math.round(aud.currentTime * 100 / aud.duration);
   progressBar.style.width = `${progress}%`;
+  listProgress.style.width = `${progress}%`;
   if(aud.paused) {
     buttonPlay.classList.remove("button--active");
+    pause.style.display = "none";
     album.classList.remove("animation");
     play.style.display = "block";
-    pause.style.display = "none";
+    listPlay.style.display = "block";
+    listPause.style.display = "none";
     clearInterval(runProgressBar);
   }
 }
