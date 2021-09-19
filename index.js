@@ -20,6 +20,9 @@ const listPlay = document.getElementById("listPlay");
 const listPause = document.getElementById("listPause");
 const listButtonNext = document.getElementById("listButtonNext");
 const listProgress = document.getElementById("listProgress");
+const buttonRepeat = document.getElementById("buttonRepeat");
+const textButtonRepeat = document.getElementById("textButtonRepeat");
+const textButtonRepeatOne = document.getElementById("textButtonRepeatOne");
 
 
 //escuchador de eventos
@@ -31,9 +34,11 @@ buttonBack.addEventListener("click", back);
 menuList.addEventListener("click", mostrarLista);
 buttonClose.addEventListener("click", mostrarLista);
 list.addEventListener("click", seleccionarCancion);
+buttonRepeat.addEventListener("click", repeat);
 
 //variables de la aplicacion
 let actual = 0;
+var estado = 0;
 var playlist = [];
 var progress = 0;
 var runProgressBar;
@@ -86,8 +91,12 @@ function next() {
   if(actual < playlist.length - 1) {
     actual ++;
   } else if (actual >= playlist.length - 1){
-    actual = playlist.length -1;
-    return;
+    if(estado === 2) {
+      actual = 0;
+    } else {
+      actual = playlist.length -1;
+      return;
+    }
   }
   actualizarCancion(actual);
 }
@@ -101,8 +110,12 @@ function back() {
   if(actual > 0) {
     actual --;
   } else if (actual <= 0){
-    actual = 0;
-    return;
+    if(estado === 2) {
+      actual = playlist.length -1;
+    } else {
+      actual = 0;
+      return;
+    }
   }
   actualizarCancion(actual);
 }
@@ -143,14 +156,27 @@ function runBar(){
   progress = Math.round(aud.currentTime * 100 / aud.duration);
   progressBar.style.width = `${progress}%`;
   listProgress.style.width = `${progress}%`;
-  if(aud.paused) {
-    buttonPlay.classList.remove("button--active");
-    pause.style.display = "none";
-    album.classList.remove("animation");
-    play.style.display = "block";
-    listPlay.style.display = "block";
-    listPause.style.display = "none";
-    clearInterval(runProgressBar);
+  if(aud.currentTime === aud.duration) {
+    if(estado === 1) {
+      reproducir();
+    }
+    else if(estado === 2) {
+      if(actual < playlist.length - 1) {
+        next()
+      } else if (actual >= playlist.length - 1){
+        actual = -1; //menos uno porque la funcion next suma uno entonces arrancaria en la primera pocision, la 0
+        next();
+      }
+    } 
+    else {
+      buttonPlay.classList.remove("button--active");
+      pause.style.display = "none";
+      album.classList.remove("animation");
+      play.style.display = "block";
+      listPlay.style.display = "block";
+      listPause.style.display = "none";
+      clearInterval(runProgressBar);
+    }
   }
 }
 
@@ -171,4 +197,28 @@ function mostrarLista() {
 function seleccionarCancion(ev) {
   actual = ev.target.parentElement.id;
   actualizarCancion(actual);
+}
+
+function repeat(){
+  estado ++;
+  if(estado >= 3) {
+    estado = 0
+  }
+  switch(estado) {
+    case 0:
+      buttonRepeat.classList.remove("active");
+      textButtonRepeat.innerHTML = "";
+      textButtonRepeatOne.innerHTML = "";
+      break;
+    case 1:
+      buttonRepeat.classList.add("active");
+      textButtonRepeat.innerHTML = "";
+      textButtonRepeatOne.innerHTML = '1';
+      break;
+    case 2:
+      buttonRepeat.classList.add("active");
+      textButtonRepeat.innerHTML = "All";
+      textButtonRepeatOne.innerHTML = "";
+      break;
+  }
 }

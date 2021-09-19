@@ -198,6 +198,18 @@ body {
 }
 .options svg {
   stroke: var(--shadow);
+  cursor: pointer;
+}
+.options .active {
+  stroke: var(--principal);
+}
+.textButtonRepeat {
+  fill: var(--principal);
+  stroke: var(--principal);
+  font-size: 8px;
+  align-self: center;
+  justify-self: center;
+
 }
 .playlist {
   width: 100%;
