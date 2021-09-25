@@ -283,6 +283,7 @@ function addFavorite() {
     if(buttonFavouritesSongs.classList.contains("selected")) {
       if(favourites.length === 0) {
         showListAll();
+        estado = 0;
         actual = 0;
         actualizarCancion(actual);
       } else {
