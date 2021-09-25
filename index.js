@@ -20,9 +20,12 @@ const listPlay = document.getElementById("listPlay");
 const listPause = document.getElementById("listPause");
 const listButtonNext = document.getElementById("listButtonNext");
 const listProgress = document.getElementById("listProgress");
-const buttonRepeat = document.getElementById("buttonRepeat");
 const textButtonRepeat = document.getElementById("textButtonRepeat");
 const textButtonRepeatOne = document.getElementById("textButtonRepeatOne");
+const buttonRepeat = document.getElementById("buttonRepeat");
+const buttonAllSongs = document.getElementById("buttonAllSongs");
+const buttonFavouritesSongs = document.getElementById("buttonFavouritesSongs");
+const buttonFavorite = document.getElementById("buttonFavorite");
 
 
 //escuchador de eventos
@@ -31,15 +34,20 @@ listButtonPlay.addEventListener("click", reproducir);
 buttonNext.addEventListener("click", next);
 listButtonNext.addEventListener("click", next);
 buttonBack.addEventListener("click", back);
-menuList.addEventListener("click", mostrarLista);
-buttonClose.addEventListener("click", mostrarLista);
+menuList.addEventListener("click", showList);
+buttonClose.addEventListener("click", showList);
 list.addEventListener("click", seleccionarCancion);
 buttonRepeat.addEventListener("click", repeat);
+buttonFavorite.addEventListener("click", addFavorite);
+buttonAllSongs.addEventListener("click", showListAll);
+buttonFavouritesSongs.addEventListener("click", showListFavourites);
 
 //variables de la aplicacion
 let actual = 0;
 var estado = 0;
 var playlist = [];
+var datalist = [];
+var favourites = [];
 var progress = 0;
 var runProgressBar;
 
@@ -55,21 +63,27 @@ fetch("./playlist.json")
     title.innerText = playlist[actual].title;
     songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;
     artist.innerText = playlist[actual].artista;
-    let html = "";
-    data.forEach(song => {
-      html += `
-      <div id="${song.id}" class="song">
-        <img src="${song.img}" alt="">
-        <h4>${song.title}</h4>
-        <p>${song.artista}</p>
-      </div>
-      `
-
-      list.innerHTML = html;
-    });
+    datalist = playlist;
+    isFavorite();
+    putInfoToList();
   });
 
-//FUNCIONES
+function putInfoToList() {
+  list.innerHTML = '';
+  let html = "";
+  datalist.forEach(song => {
+    html += `
+    <div id="${song.id}" class="song">
+      <img src="${song.img}" alt="">
+      <h4>${song.title}</h4>
+      <p>${song.artista}</p>
+    </div>
+    `
+
+    list.innerHTML = html;
+  });
+}
+
 function reproducir() {
   if(aud.paused) {
     aud.play();
@@ -88,13 +102,13 @@ function next() {
     listButtonNext.classList.toggle("button--active");
   }, 200);
 
-  if(actual < playlist.length - 1) {
+  if(actual < datalist.length - 1) {
     actual ++;
-  } else if (actual >= playlist.length - 1){
+  } else if (actual >= datalist.length - 1){
     if(estado === 2) {
       actual = 0;
     } else {
-      actual = playlist.length -1;
+      actual = datalist.length -1;
       return;
     }
   }
@@ -111,7 +125,7 @@ function back() {
     actual --;
   } else if (actual <= 0){
     if(estado === 2) {
-      actual = playlist.length -1;
+      actual = datalist.length -1;
     } else {
       actual = 0;
       return;
@@ -121,14 +135,15 @@ function back() {
 }
 
 function actualizarCancion(actual) {
-  aud.src=playlist[actual].url;
-  album.src=playlist[actual].img;
-  title.innerText = playlist[actual].title;
-  songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;  artist.innerText = playlist[actual].artista;
+  aud.src= datalist[actual].url;
+  album.src= datalist[actual].img;
+  title.innerText = datalist[actual].title;
+  songPlayingName.innerText = `${datalist[actual].title} - ${datalist[actual].artista}` ;  artist.innerText = datalist[actual].artista;
   aud.play();
   progress = 0;
   progressBar.style.width = `${progress}%`;
   listProgress.style.width = `${progress}%`;
+  isFavorite();
   togglePlay();
 }
 
@@ -161,9 +176,9 @@ function runBar(){
       reproducir();
     }
     else if(estado === 2) {
-      if(actual < playlist.length - 1) {
+      if(actual < datalist.length - 1) {
         next()
-      } else if (actual >= playlist.length - 1){
+      } else if (actual >= datalist.length - 1){
         actual = -1; //menos uno porque la funcion next suma uno entonces arrancaria en la primera pocision, la 0
         next();
       }
@@ -180,22 +195,39 @@ function runBar(){
   }
 }
 
-function mostrarLista() {
+function showListAll() {
+  datalist = playlist;
+  putInfoToList();
+  buttonAllSongs.classList.add("selected");
+  buttonFavouritesSongs.classList.remove("selected");
+}
+function showListFavourites() {
+  datalist = favourites;
+  putInfoToList();
+  buttonAllSongs.classList.remove("selected");
+  buttonFavouritesSongs.classList.add("selected");
+}
+
+function showList() {
   if(listContainer.classList.contains("inactive")){
     main.classList.add("inactive");
     menuList.classList.add("inactive");
     listContainer.classList.remove("inactive");
     buttonClose.classList.remove("inactive");
+    buttonAllSongs.classList.remove("inactive");
+    buttonFavouritesSongs.classList.remove("inactive");
   } else {
     main.classList.remove("inactive");
     menuList.classList.remove("inactive");
     listContainer.classList.add("inactive");
     buttonClose.classList.add("inactive");
+    buttonAllSongs.classList.add("inactive");
+    buttonFavouritesSongs.classList.add("inactive");
   }
 }
 
 function seleccionarCancion(ev) {
-  actual = ev.target.parentElement.id;
+  actual = parseInt(ev.target.parentElement.id);
   actualizarCancion(actual);
 }
 
@@ -220,5 +252,52 @@ function repeat(){
       textButtonRepeat.innerHTML = "All";
       textButtonRepeatOne.innerHTML = "";
       break;
+  }
+}
+
+function addFavorite() {
+  if(!datalist[actual].isfavorite){
+    favourites.push({
+      "id": favourites.length,
+      "uid": datalist[actual].uid,
+      "artista": datalist[actual].artista,
+      "title": datalist[actual].title,
+      "url": datalist[actual].url,
+      "img": datalist[actual].img,
+      "isfavorite": true
+    });
+    datalist[actual].isfavorite = true;
+    isFavorite();
+  }
+  else if (datalist[actual].isfavorite) {
+    datalist[actual].isfavorite = false;
+    playlist[datalist[actual].uid].isfavorite = false;
+    isFavorite();
+    let newFavourites = favourites.filter(item => item.title != datalist[actual].title);
+    let idIncrementer = 0;
+    favourites = newFavourites.map(song => {
+      song.id = idIncrementer;
+      idIncrementer ++;
+      return song;
+    });
+    if(buttonFavouritesSongs.classList.contains("selected")) {
+      if(favourites.length === 0) {
+        showListAll();
+        actual = 0;
+        actualizarCancion(actual);
+      } else {
+        showListFavourites();
+        estado = 2;
+        actual === 0 ? actual = 0 : actual--;
+        next();
+      }
+    }; 
+  }
+}
+function isFavorite() {
+  if(datalist[actual].isfavorite) {
+    buttonFavorite.classList.add("active");
+  } else {
+    buttonFavorite.classList.remove("active");
   }
 }
