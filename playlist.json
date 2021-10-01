@@ -1,7 +1,5 @@
 [
   {
-    "id": 0,
-    "uid": 0,
     "artista": "Tiago PZK, LIT killah",
     "title": "Entre Nosotros",
     "url": "assets/music/Entre-Nosotros.opus",
@@ -9,8 +7,6 @@
     "isfavorite": false
   },
   {
-    "id": 1,
-    "uid": 1,
     "artista": "Imagine Dragons",
     "title": "Whatever It Takes",
     "url": "assets/music/Imagine-Dragons-Whatever-It-Takes.opus",
@@ -18,8 +14,6 @@
     "isfavorite": false
   },
   {
-    "id": 2,
-    "uid": 2,
     "artista": "Duncan Laurence",
     "title": "Arcade",
     "url": "assets/music/Duncan-Laurence-Arcade.opus",
@@ -27,8 +21,6 @@
     "isfavorite": false
   },
   {
-    "id": 3,
-    "uid": 3,
     "artista": "Besomorph",
     "title": "Monster",
     "url": "assets/music/Besomorph-Monster.opus",
@@ -36,8 +28,6 @@
     "isfavorite": false
   },
   {
-    "id": 4,
-    "uid": 4,
     "artista": "Hozier",
     "title": "Take Me To Church",
     "url": "assets/music/Hozier-Take-Me-To-Church.opus",
@@ -45,8 +35,6 @@
     "isfavorite": false
   },
   {
-    "id": 5,
-    "uid": 5,
     "artista": "INNDRIVE",
     "title": "Shake It",
     "url": "assets/music/INNDRIVE-Shake-It.opus",
@@ -54,8 +42,6 @@
     "isfavorite": false
   },
   {
-    "id": 6,
-    "uid": 6,
     "artista": "Konoba",
     "title": "On Our Knees",
     "url": "assets/music/Konoba-On-Our-Knees.opus",
@@ -63,8 +49,6 @@
     "isfavorite": false
   },
   {
-    "id": 7,
-    "uid": 7,
     "artista": "C. Tangana ft. Niño de Elche x La Hungara",
     "title": "Tu Me Dejaste De Querer",
     "url": "assets/music/Tu-Me-Dejaste-De-Querer.opus",
@@ -72,8 +56,6 @@
     "isfavorite": false
   },
   {
-    "id": 8,
-    "uid": 8,
     "artista": "Zatox",
     "title": "The Godfather",
     "url": "assets/music/Zatox-The-Godfather.opus",
@@ -81,12 +63,31 @@
     "isfavorite": false
   },
   {
-    "id": 9,
-    "uid": 9,
     "artista": "Oliver Tree",
     "title": "Life Goes On",
     "url": "assets/music/Oliver-Tree-Life-Goes-On.opus",
     "img": "assets/images/lifegoeson.jpg",
+    "isfavorite": false
+  },
+  {
+    "artista": "Ramon Orlando",
+    "title": "No Voy A Volver A Llorar",
+    "url": "assets/music/Ramon-Orlando-no-voy-a-volver-a-llorar.opus",
+    "img": "assets/images/novoyavolverallorar.jpg",
+    "isfavorite": false
+  },
+  {
+    "artista": "The Weeknd",
+    "title": "Call Out My Name",
+    "url": "assets/music/The-Weeknd-Call-Out-My-Name.opus",
+    "img": "assets/images/calloutmyname.jpg",
+    "isfavorite": false
+  },
+  {
+    "artista": "Zion Y Lenox",
+    "title": "Amor Genuino",
+    "url": "assets/music/Zion-Y-Lenox-Amor-Genuino.opus",
+    "img": "assets/images/amorgenuino.jpg",
     "isfavorite": false
   }
 ]

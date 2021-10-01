@@ -26,6 +26,7 @@ const buttonRepeat = document.getElementById("buttonRepeat");
 const buttonAllSongs = document.getElementById("buttonAllSongs");
 const buttonFavouritesSongs = document.getElementById("buttonFavouritesSongs");
 const buttonFavorite = document.getElementById("buttonFavorite");
+const buttonAleatory = document.getElementById("buttonAleatory");
 
 
 //escuchador de eventos
@@ -38,6 +39,7 @@ menuList.addEventListener("click", showList);
 buttonClose.addEventListener("click", showList);
 list.addEventListener("click", seleccionarCancion);
 buttonRepeat.addEventListener("click", repeat);
+buttonAleatory.addEventListener("click", aleatory);
 buttonFavorite.addEventListener("click", addFavorite);
 buttonAllSongs.addEventListener("click", showListAll);
 buttonFavouritesSongs.addEventListener("click", showListFavourites);
@@ -50,6 +52,7 @@ var datalist = [];
 var favourites = [];
 var progress = 0;
 var runProgressBar;
+var flagAleatory = false;
 
 //conexion con la API
 fetch("./playlist.json")
@@ -57,13 +60,29 @@ fetch("./playlist.json")
     return res.json();
   })
   .then(function(data) {
+    let idIncrementer = 0;
     playlist = data;
-    aud.src = playlist[actual].url;
-    album.src=playlist[actual].img;
-    title.innerText = playlist[actual].title;
-    songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;
-    artist.innerText = playlist[actual].artista;
+    playlist.sort((a,b) => {
+      if (a.title > b.title) {
+        return 1;
+      }
+      if (a.title < b.title) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    }).map(item => {
+      item.id = idIncrementer;
+      item.uid = idIncrementer;
+      idIncrementer++;
+      return item;
+    });
     datalist = playlist;
+    aud.src = datalist[actual].url;
+    album.src=datalist[actual].img;
+    title.innerText = datalist[actual].title;
+    songPlayingName.innerText = `${datalist[actual].title} - ${datalist[actual].artista}` ;
+    artist.innerText = datalist[actual].artista;
     isFavorite();
     putInfoToList();
   });
@@ -228,7 +247,24 @@ function showList() {
 
 function seleccionarCancion(ev) {
   actual = parseInt(ev.target.parentElement.id);
-  actualizarCancion(actual);
+  if(buttonAllSongs.classList.contains("selected")){
+    aud.src= playlist[actual].url;
+    album.src= playlist[actual].img;
+    title.innerText = playlist[actual].title;
+    songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;  artist.innerText = playlist[actual].artista;
+  }
+  else if(buttonFavouritesSongs.classList.contains("selected")) {
+    aud.src= favourites[actual].url;
+    album.src= favourites[actual].img;
+    title.innerText = favourites[actual].title;
+    songPlayingName.innerText = `${favourites[actual].title} - ${favourites[actual].artista}` ;  artist.innerText = favourites[actual].artista;
+  }
+  aud.play();
+  progress = 0;
+  progressBar.style.width = `${progress}%`;
+  listProgress.style.width = `${progress}%`;
+  isFavorite();
+  togglePlay();
 }
 
 function repeat(){
@@ -300,5 +336,36 @@ function isFavorite() {
     buttonFavorite.classList.add("active");
   } else {
     buttonFavorite.classList.remove("active");
+  }
+}
+
+function aleatory() {
+  if(flagAleatory){
+    buttonFavouritesSongs.classList.contains("selected") ? datalist = favourites : datalist = playlist;    
+    putInfoToList();
+    flagAleatory = false;
+    buttonAleatory.classList.remove("active");
+  } 
+  else {
+    let idIncrementer = -1;
+    let newdatalist = datalist.map(item => {
+      return {
+        ...item,
+      };
+    });
+    newdatalist = newdatalist
+      .sort(function() {return Math.random() - 0.5})
+      .map(item => {
+        idIncrementer ++;
+        return {
+          ...item,
+          "id": idIncrementer
+        }
+      });
+    datalist = newdatalist;
+    // putInfoToList();
+    console.log(newdatalist);
+    flagAleatory = true;
+    buttonAleatory.classList.add("active");
   }
 }

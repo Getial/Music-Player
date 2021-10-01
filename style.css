@@ -222,6 +222,10 @@ body {
 }
 .options .active {
   stroke: var(--principal);
+  fill: red;
+}
+.options path {
+  fill: red;
 }
 .textButtonRepeat {
   fill: var(--principal);
