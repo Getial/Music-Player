@@ -8,6 +8,7 @@ const artist = document.getElementById("artist");
 const album = document.getElementById("album");
 const play = document.getElementById("play");
 const pause = document.getElementById("pause");
+const progressBarContainer = document.getElementById("barProgress");
 const progressBar = document.getElementById("progress");
 const menuList = document.getElementById("menuList");
 const buttonClose = document.getElementById("close");
@@ -43,6 +44,7 @@ buttonAleatory.addEventListener("click", aleatory);
 buttonFavorite.addEventListener("click", addFavorite);
 buttonAllSongs.addEventListener("click", showListAll);
 buttonFavouritesSongs.addEventListener("click", showListFavourites);
+progressBarContainer.addEventListener("click", adelantar);
 
 //variables de la aplicacion
 let actual = 0;
@@ -368,4 +370,9 @@ function aleatory() {
     flagAleatory = true;
     buttonAleatory.classList.add("active");
   }
+}
+
+function adelantar(e) {
+  aud.currentTime = e.offsetX * aud.duration / 300;
+  runBar();
 }
