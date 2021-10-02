@@ -89,5 +89,12 @@
     "url": "assets/music/Zion-Y-Lenox-Amor-Genuino.opus",
     "img": "assets/images/amorgenuino.jpg",
     "isfavorite": false
+  },
+  {
+    "artista": "Surf Curse",
+    "title": "Freaks",
+    "url": "assets/music/Surf-Curse-Freaks.opus",
+    "img": "assets/images/freaks.jpg",
+    "isfavorite": false
   }
 ]
