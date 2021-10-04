@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
 
 :root {
-  --blue: #EAF0F8;
-  --claro: #f0f0f0;
-  /* --principal: #53f9f6; */
   --principal: #0CECDD;
-  --secundario: #14d8d2;
   --background: #e0e5ec;
-  --light: rgba(255, 255, 255, 0.8);
-  --shadow:  rgba(165, 177, 198, 0.6);
+  --light: #fff9;
+  --lightProgress: #76feef;
+  --color: #000b;
+  --colorSvg: #abc;
+  --shadow:  #abc9;
+  --shadowOne: #0001;
+  --shadowThree: #0003;
+  --shadowProgress: #3090af;
 }
 
 * {
@@ -21,6 +23,7 @@ body {
   height: 100vh;
   margin: 0;
   font-family: 'Roboto', sans-serif;
+  color: var(--color);
   display: flex;
   background: var(--background);
   justify-content: center;
@@ -44,7 +47,13 @@ body {
   display: flex;
   padding-top: 10px;
   align-items: baseline;
-  justify-content: flex-end;
+  justify-content: space-between;
+}
+.navbar svg,
+.buttonTheme {
+  align-self: center;
+  margin: 0 20px;
+  stroke: var(--principal);
 }
 .listFavourites,
 .allSongs {
@@ -63,11 +72,6 @@ body {
   background: var(--background);
   box-shadow: 8px 8px 16px var(--shadow),
               -8px -8px 8px var(--light);
-}
-.navbar svg {
-  align-self: center;
-  margin: 0 20px;
-  stroke: var(--principal);
 }
 .main {
   width: 100%;
@@ -111,14 +115,14 @@ body {
   border: 1px solid var(--shadow);
   border-radius: 9px;
   box-shadow: inset 1px 1px 2px #828589,
-              inset -1px -1px 2px #ffffff;
+              inset -1px -1px 2px var(--light);
 }
 .progress {
   height: 100%;
   border-radius: 9px;
   background: var(--principal);
-  box-shadow: inset 1px 1px 2px #3090af,
-              inset -1px -1px 2px #76feef;
+  box-shadow: inset 1px 1px 2px var(--shadowProgress),
+              inset -1px -1px 2px var(--lightProgress);
 }
 .controls{
   width: 100%;
@@ -137,12 +141,11 @@ body {
   transition: 0.2s box-shadow ease-in-out;
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: -8px -8px 20px 0px #fff9, -6px -6px 6px 0px #fff9,
-    8px 8px 20px 0px #0001, 5px 5px 6px 0px #0001, inset 0px 0px 0px 0px #fff9,
-    inset 0px 0px 0px 0px #0001, inset 0px 0px 0px 0px #fff9,
-    inset 0px 0px 0px 0px #0001;
+  box-shadow: -8px -8px 20px 0px var(--light), -6px -6px 6px 0px var(--light),
+    8px 8px 20px 0px var(--shadowOne), 5px 5px 6px 0px var(--shadowOne), inset 0px 0px 0px 0px var(--light),
+    inset 0px 0px 0px 0px var(--shadowOne), inset 0px 0px 0px 0px var(--light),
+    inset 0px 0px 0px 0px var(--shadowOne);
   margin: 0 2rem;
-  /* background-color: var(--blue); */
 }
 .play{
   width: 80px;
@@ -204,10 +207,10 @@ body {
   border-bottom: 5px solid transparent;
 }
 .button--active {
-  box-shadow: 0px 0px 0px 0px #fff9, 0px 0px 0px 0px #fff9,
-    0px 0px 0px 0px #0001, 0px 0px 0px 0px #0001, inset -8px -8px 20px 0px #fff9,
-    inset -5px -5px 6px 0px #fff9, inset 8px 8px 20px 0px #0003,
-    inset 5px 5px 6px 0px #0001;
+  box-shadow: 0px 0px 0px 0px var(--light), 0px 0px 0px 0px var(--light),
+    0px 0px 0px 0px var(--shadowThree), 0px 0px 0px 0px var(--shadowThree), inset -8px -8px 20px 0px var(--light),
+    inset -5px -5px 6px 0px var(--light), inset 8px 8px 20px 0px var(--shadowThree),
+    inset 5px 5px 6px 0px var(--shadowThree);
 }
 .options {
   width: 100%;
@@ -217,15 +220,11 @@ body {
   margin-bottom: 30px;
 }
 .options svg {
-  stroke: var(--shadow);
+  stroke: var(--colorSvg);
   cursor: pointer;
 }
 .options .active {
   stroke: var(--principal);
-  fill: red;
-}
-.options path {
-  fill: red;
 }
 .textButtonRepeat {
   fill: var(--principal);
@@ -347,15 +346,13 @@ body {
   width: 95%;
   border: 1px solid var(--shadow);
   border-radius: 9px;
-  /* box-shadow: inset 1px 1px 2px #828589,
-              inset -1px -1px 2px #ffffff; */
 }
 .listProgress {
   height: 90%;
   border-radius: 9px;
   background: var(--principal);
-  box-shadow: inset 1px 1px 2px #3090af,
-              inset -1px -1px 2px #76feef;
+  box-shadow: inset 1px 1px 2px var(--shadowProgress),
+              inset -1px -1px 2px var(--lightProgress);
 }
 .listButtonPlay,
 .listButtonNext{

@@ -96,5 +96,12 @@
     "url": "assets/music/Surf-Curse-Freaks.opus",
     "img": "assets/images/freaks.jpg",
     "isfavorite": false
+  },
+  {
+    "artista": "Shiloh Dynasty",
+    "title": "Imagination",
+    "url": "assets/music/Shiloh-Dynasty-Imagination.opus",
+    "img": "assets/images/imaginationShiloh.jpg",
+    "isfavorite": false
   }
 ]
