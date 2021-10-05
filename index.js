@@ -12,6 +12,7 @@ const pause = document.getElementById("pause");
 const progressBarContainer = document.getElementById("barProgress");
 const progressBar = document.getElementById("progress");
 const buttonTheme = document.getElementById("buttonTheme");
+const circleButtonTheme = document.getElementById("circleButtonTheme");
 const menuList = document.getElementById("menuList");
 const buttonClose = document.getElementById("close");
 const main = document.getElementById("main");
@@ -382,13 +383,13 @@ function adelantar(e) {
 function handleSwitchTheme() {
   let colorActual = style.getPropertyValue('--background');
   console.log(colorActual);
-  // style.setProperty('--background', '#1c0b56');
   if(colorActual === '' || '#e0e5ec') {
     style.setProperty('--background', '#454c74');
     style.setProperty('--color', '#fffb'); 
     style.setProperty('--colorSvg', '#abcb'); 
     style.setProperty('--light', '#505883'); 
-    style.setProperty('--shadow', '#2f375a'); 
+    style.setProperty('--shadow', '#2f375a');
+    circleButtonTheme.classList.add('active');
   }
   if(colorActual === "#454c74") {
     style.setProperty('--background', '#e0e5ec');
@@ -396,6 +397,6 @@ function handleSwitchTheme() {
     style.setProperty('--colorSvg', '#abc9'); 
     style.setProperty('--light', '#fff9'); 
     style.setProperty('--shadow', '#abc9'); 
+    circleButtonTheme.classList.remove('active');
   }
-  buttonTheme.style.opacity = '0';
 }

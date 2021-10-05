@@ -103,5 +103,12 @@
     "url": "assets/music/Shiloh-Dynasty-Imagination.opus",
     "img": "assets/images/imaginationShiloh.jpg",
     "isfavorite": false
+  },
+  {
+    "artista": "Bruno Mars",
+    "title": "Locked Out Of Heaven",
+    "url": "assets/music/Bruno-Mars-Locked-Out-Of-Heaven.opus",
+    "img": "assets/images/lockedoutofheaven.png",
+    "isfavorite": false
   }
 ]

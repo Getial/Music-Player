@@ -57,11 +57,12 @@ body {
 }
 .listFavourites,
 .allSongs {
-  width: 30%;
+  width: 28%;
+  max-width: 22%;
   height: 70%;
   cursor: pointer;
   margin: 10px 8px;
-  font-size: 16px;
+  font-size: 15px;
   text-align: center;
   background: var(--background);
 }
@@ -72,6 +73,30 @@ body {
   background: var(--background);
   box-shadow: 8px 8px 16px var(--shadow),
               -8px -8px 8px var(--light);
+}
+.buttonTheme{
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  background: var(--background);
+  border-radius: 10px;
+  border: 1px solid var(--shadow);
+  box-shadow: inset 3px 3px 6px var(--shadow),
+              inset -3px -3px 6px var(--light);
+}
+.circleButtonTheme {
+  width: 22px;
+  height: 22px;
+  background: var(--light);
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px var(--shadow),
+              -1px -1px 2px var(--light);
+  transition: transform 0.3s linear;
+}
+.circleButtonTheme.active {
+  transform: translateX(18px);
+  transition: transform 0.3s linear;
 }
 .main {
   width: 100%;
@@ -121,8 +146,8 @@ body {
   height: 100%;
   border-radius: 9px;
   background: var(--principal);
-  box-shadow: inset 1px 1px 2px var(--shadowProgress),
-              inset -1px -1px 2px var(--lightProgress);
+  box-shadow: inset 2px 2px 4px var(--shadowProgress),
+              inset -2px -2px 4px var(--lightProgress);
 }
 .controls{
   width: 100%;
