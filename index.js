@@ -1,28 +1,30 @@
 // traeren elementos del DOM
-const style = document.documentElement.style;
-const aud = document.getElementById("aud");
-const buttonPlay = document.getElementById("buttonPlay");
-const buttonNext = document.getElementById("buttonNext");
-const buttonBack = document.getElementById("buttonBack");
-const title = document.getElementById("title");
-const artist = document.getElementById("artist");
-const album = document.getElementById("album");
-const play = document.getElementById("play");
-const pause = document.getElementById("pause");
-const progressBarContainer = document.getElementById("barProgress");
-const progressBar = document.getElementById("progress");
-const buttonTheme = document.getElementById("buttonTheme");
-const circleButtonTheme = document.getElementById("circleButtonTheme");
-const menuList = document.getElementById("menuList");
-const buttonClose = document.getElementById("close");
-const main = document.getElementById("main");
-const listContainer = document.getElementById("playlist");
-const list = document.getElementById("songsList");
-const songPlayingName = document.getElementById("songPlayingName");
-const listButtonPlay = document.getElementById("listButtonPlay");
-const listPlay = document.getElementById("listPlay");
-const listPause = document.getElementById("listPause");
-const listButtonNext = document.getElementById("listButtonNext");
+const style = document.documentElement.style; //obetner los estilos para modificar las variables en CSS
+const aud = document.getElementById("aud"); // etiqueta html para el audio
+const buttonPlay = document.getElementById("buttonPlay"); //boton play
+const buttonNext = document.getElementById("buttonNext"); // boton para pasar a la siguiente cancion
+const buttonBack = document.getElementById("buttonBack"); // boton para retroceder a la anterior cancion
+const title = document.getElementById("title"); // parrafo para poner el titulo de la cancion
+const artist = document.getElementById("artist"); //parrafo para poner el artista de la cancion
+const album = document.getElementById("album"); // imagen para poner la imagen del album de la cancion
+const play = document.getElementById("play"); // triangulo dentro del boton de play
+const pause = document.getElementById("pause"); // barras de pausa dentro del boton de play
+const progressBarContainer = document.getElementById("barProgress"); // contenedor de la barra de progeso
+const progressBar = document.getElementById("progress"); // barra de progreso
+const currentTimeText = document.getElementById("currentTime"); // parrafo para mostrar el tiempo reproducido de la cancion
+const timeDurationText = document.getElementById("timeDuration"); //parrafo para mostrar el tiempo total de la cancion
+const buttonTheme = document.getElementById("buttonTheme"); //switch para cambiar entre el tema claro y el tema oscuro
+const circleButtonTheme = document.getElementById("circleButtonTheme"); // circulo dentro del switch para cambiar el tema
+const menuList = document.getElementById("menuList"); // boton para mostrar las lista de canciones
+const buttonClose = document.getElementById("close"); // boton para cerrar la lista de canciones
+const main = document.getElementById("main"); // contenedor para la ventana principal de la aplicacion
+const listContainer = document.getElementById("playlist"); // contenedor para las listas de canciones 
+const list = document.getElementById("songsList"); // container para poner la lista de canciones a mostrar
+const songPlayingName = document.getElementById("songPlayingName"); // parrafo para poner la cancion que se esta reproduciendo
+const listButtonPlay = document.getElementById("listButtonPlay"); // boton de play dentro del container para mostrar las listas de canciones
+const listPlay = document.getElementById("listPlay"); // triangulo dentro del boton de play en la lista de reproduccion
+const listPause = document.getElementById("listPause"); // barras de pausa dentro del boton de play en la lista de reproduccion
+const listButtonNext = document.getElementById("listButtonNext"); // boton para pasar a la siguiente cancion en la lista de reproduccion 
 const listProgress = document.getElementById("listProgress");
 const textButtonRepeat = document.getElementById("textButtonRepeat");
 const textButtonRepeatOne = document.getElementById("textButtonRepeatOne");
@@ -85,15 +87,17 @@ fetch("./playlist.json")
     });
     datalist = playlist;
     aud.src = datalist[actual].url;
-    album.src=datalist[actual].img;
+    album.src = datalist[actual].img;
     title.innerText = datalist[actual].title;
     songPlayingName.innerText = `${datalist[actual].title} - ${datalist[actual].artista}` ;
     artist.innerText = datalist[actual].artista;
+    currentTimeText.innerText = "0:00";
+    timeDurationText.innerText = datalist[actual].duration;
     isFavorite();
     putInfoToList();
   });
-
-function putInfoToList() {
+  
+  function putInfoToList() {
   list.innerHTML = '';
   let html = "";
   datalist.forEach(song => {
@@ -164,6 +168,8 @@ function actualizarCancion(actual) {
   album.src= datalist[actual].img;
   title.innerText = datalist[actual].title;
   songPlayingName.innerText = `${datalist[actual].title} - ${datalist[actual].artista}` ;  artist.innerText = datalist[actual].artista;
+  currentTimeText.innerText = '0:00';
+  timeDurationText.innerText = datalist[actual].duration;
   aud.play();
   progress = 0;
   progressBar.style.width = `${progress}%`;
@@ -196,6 +202,7 @@ function runBar(){
   progress = Math.round(aud.currentTime * 100 / aud.duration);
   progressBar.style.width = `${progress}%`;
   listProgress.style.width = `${progress}%`;
+  currentTimeText.innerText = `${Math.floor(aud.currentTime / 60)}: ${Math.floor(aud.currentTime % 60).toString().padStart(2, 0)}`;
   if(aud.currentTime === aud.duration) {
     if(estado === 1) {
       reproducir();
@@ -258,12 +265,14 @@ function seleccionarCancion(ev) {
     album.src= playlist[actual].img;
     title.innerText = playlist[actual].title;
     songPlayingName.innerText = `${playlist[actual].title} - ${playlist[actual].artista}` ;  artist.innerText = playlist[actual].artista;
+    timeDurationText.innerText = playlist[actual].duration;
   }
   else if(buttonFavouritesSongs.classList.contains("selected")) {
     aud.src= favourites[actual].url;
     album.src= favourites[actual].img;
     title.innerText = favourites[actual].title;
     songPlayingName.innerText = `${favourites[actual].title} - ${favourites[actual].artista}` ;  artist.innerText = favourites[actual].artista;
+    timeDurationText.innerText = favourites[actual].duration;
   }
   aud.play();
   progress = 0;
@@ -306,6 +315,7 @@ function addFavorite() {
       "title": datalist[actual].title,
       "url": datalist[actual].url,
       "img": datalist[actual].img,
+      "duration": datalist[actual].duration,
       "isfavorite": true
     });
     datalist[actual].isfavorite = true;

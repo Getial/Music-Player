@@ -4,6 +4,7 @@
     "title": "Entre Nosotros",
     "url": "assets/music/Entre-Nosotros.opus",
     "img": "assets/images/entrenosotros.jpeg",
+    "duration": "3:12",
     "isfavorite": false
   },
   {
@@ -11,6 +12,7 @@
     "title": "Whatever It Takes",
     "url": "assets/music/Imagine-Dragons-Whatever-It-Takes.opus",
     "img": "assets/images/whateverittakes.jpg",
+    "duration": "3:22",
     "isfavorite": false
   },
   {
@@ -18,6 +20,7 @@
     "title": "Arcade",
     "url": "assets/music/Duncan-Laurence-Arcade.opus",
     "img": "assets/images/arcade.jpg",
+    "duration": "3:11",
     "isfavorite": false
   },
   {
@@ -25,6 +28,7 @@
     "title": "Monster",
     "url": "assets/music/Besomorph-Monster.opus",
     "img": "assets/images/monster.jpg",
+    "duration": "2:12",
     "isfavorite": false
   },
   {
@@ -32,6 +36,7 @@
     "title": "Take Me To Church",
     "url": "assets/music/Hozier-Take-Me-To-Church.opus",
     "img": "assets/images/takemetochurch.jpeg",
+    "duration": "3:55",
     "isfavorite": false
   },
   {
@@ -39,6 +44,7 @@
     "title": "Shake It",
     "url": "assets/music/INNDRIVE-Shake-It.opus",
     "img": "assets/images/shakeit.jpg",
+    "duration": "2:48",
     "isfavorite": false
   },
   {
@@ -46,6 +52,7 @@
     "title": "On Our Knees",
     "url": "assets/music/Konoba-On-Our-Knees.opus",
     "img": "assets/images/OnOurKnees.jpg",
+    "duration": "4:19",
     "isfavorite": false
   },
   {
@@ -53,6 +60,7 @@
     "title": "Tu Me Dejaste De Querer",
     "url": "assets/music/Tu-Me-Dejaste-De-Querer.opus",
     "img": "assets/images/tumedejastedequerer.jpg",
+    "duration": "3:17",
     "isfavorite": false
   },
   {
@@ -60,6 +68,7 @@
     "title": "The Godfather",
     "url": "assets/music/Zatox-The-Godfather.opus",
     "img": "assets/images/thegodfather.jpg",
+    "duration": "2:36",
     "isfavorite": false
   },
   {
@@ -67,6 +76,7 @@
     "title": "Life Goes On",
     "url": "assets/music/Oliver-Tree-Life-Goes-On.opus",
     "img": "assets/images/lifegoeson.jpg",
+    "duration": "2:41",
     "isfavorite": false
   },
   {
@@ -74,6 +84,7 @@
     "title": "No Voy A Volver A Llorar",
     "url": "assets/music/Ramon-Orlando-no-voy-a-volver-a-llorar.opus",
     "img": "assets/images/novoyavolverallorar.jpg",
+    "duration": "4:50",
     "isfavorite": false
   },
   {
@@ -81,6 +92,7 @@
     "title": "Call Out My Name",
     "url": "assets/music/The-Weeknd-Call-Out-My-Name.opus",
     "img": "assets/images/calloutmyname.jpg",
+    "duration": "3:53",
     "isfavorite": false
   },
   {
@@ -88,6 +100,7 @@
     "title": "Amor Genuino",
     "url": "assets/music/Zion-Y-Lenox-Amor-Genuino.opus",
     "img": "assets/images/amorgenuino.jpg",
+    "duration": "4:01",
     "isfavorite": false
   },
   {
@@ -95,6 +108,7 @@
     "title": "Freaks",
     "url": "assets/music/Surf-Curse-Freaks.opus",
     "img": "assets/images/freaks.jpg",
+    "duration": "2:27",
     "isfavorite": false
   },
   {
@@ -102,6 +116,7 @@
     "title": "Imagination",
     "url": "assets/music/Shiloh-Dynasty-Imagination.opus",
     "img": "assets/images/imaginationShiloh.jpg",
+    "duration": "3:15",
     "isfavorite": false
   },
   {
@@ -109,6 +124,23 @@
     "title": "Locked Out Of Heaven",
     "url": "assets/music/Bruno-Mars-Locked-Out-Of-Heaven.opus",
     "img": "assets/images/lockedoutofheaven.jpg",
+    "duration": "3:43",
+    "isfavorite": false
+  },
+  {
+    "artista": "Sia",
+    "title": "Unstoppable",
+    "url": "assets/music/Sia-Unstoppable.opus",
+    "img": "assets/images/unstoppable.jpeg",
+    "duration": "3:40",
+    "isfavorite": false
+  },
+  {
+    "artista": "Foster The People",
+    "title": "Imagination",
+    "url": "assets/music/Foster-The-People-Imagination.opus",
+    "img": "assets/images/imaginationFoster.jpeg",
+    "duration": "4:02",
     "isfavorite": false
   }
 ]

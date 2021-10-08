@@ -149,6 +149,14 @@ body {
   box-shadow: inset 2px 2px 4px var(--shadowProgress),
               inset -2px -2px 4px var(--lightProgress);
 }
+.times {
+  width: 90%;
+  height: 10px;
+  margin-top: -20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .controls{
   width: 100%;
   display: flex;
@@ -282,9 +290,6 @@ body {
   box-shadow: 8px 8px 16px var(--shadow),
     -8px -8px 16px var(--light);
 }
-.songsList:hover {
-  cursor: pointer;
-}
 .songsList::-webkit-scrollbar {
   -webkit-appearance: none;
 }
@@ -324,6 +329,7 @@ body {
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: solid 2px var(--shadow);
+  cursor: pointer;
 }
 .song img {
   width: 80%;
