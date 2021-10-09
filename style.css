@@ -150,9 +150,10 @@ body {
               inset -2px -2px 4px var(--lightProgress);
 }
 .times {
-  width: 90%;
+  width: 85%;
   height: 10px;
-  margin-top: -20px;
+  font-size: 15px;
+  margin-top: -100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
