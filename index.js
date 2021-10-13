@@ -62,6 +62,43 @@ var progress = 0;
 var runProgressBar;
 var flagAleatory = false;
 
+// local storage
+if(!localStorage.getItem('favorites')){
+  guardarDatos();
+} else {
+  mostrarDatosGuardados()
+}
+
+function guardarDatos() {
+  localStorage.setItem('favorites', JSON.stringify(favourites))
+  localStorage.setItem('actual', actual)
+  if(buttonAllSongs.classList.contains("selected")){
+    localStorage.setItem('lista', 'all')
+  }
+  else if(buttonFavouritesSongs.classList.contains("selected")) {
+    localStorage.setItem('lista', 'favorites')
+    
+  }
+}
+function mostrarDatosGuardados() {
+  favourites = JSON.parse(localStorage.getItem('favorites'));
+  actual = localStorage.getItem('actual');
+  let listaGuardada = localStorage.getItem('lista');
+  switch(listaGuardada) {
+    case 'all':
+      datalist = playlist;
+      buttonAllSongs.classList.add("selected");
+      buttonFavouritesSongs.classList.remove("selected");
+      break;
+    case 'favorites':
+      datalist = favourites;
+      buttonAllSongs.classList.remove("selected");
+      buttonFavouritesSongs.classList.add("selected");
+      break;
+  }
+  actualizarCancion;
+}
+
 //conexion con la API
 fetch("./playlist.json")
   .then(function(res) {
@@ -85,7 +122,11 @@ fetch("./playlist.json")
       idIncrementer++;
       return item;
     });
-    datalist = playlist;
+    if(!localStorage.getItem('favorites') || !localStorage.getItem('actual')){
+      datalist = playlist;
+    } else {
+      mostrarDatosGuardados()
+    }
     aud.src = datalist[actual].url;
     album.src = datalist[actual].img;
     title.innerText = datalist[actual].title;
@@ -176,6 +217,7 @@ function actualizarCancion(actual) {
   listProgress.style.width = `${progress}%`;
   isFavorite();
   togglePlay();
+  guardarDatos();
 }
 
 function togglePlay () {
@@ -280,6 +322,7 @@ function seleccionarCancion(ev) {
   listProgress.style.width = `${progress}%`;
   isFavorite();
   togglePlay();
+  guardarDatos();
 }
 
 function repeat(){
@@ -346,6 +389,7 @@ function addFavorite() {
       }
     }; 
   }
+  guardarDatos();
 }
 function isFavorite() {
   if(datalist[actual].isfavorite) {
