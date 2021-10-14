@@ -142,5 +142,21 @@
     "img": "assets/images/imaginationFoster.jpeg",
     "duration": "4:02",
     "isfavorite": false
+  },
+  {
+    "artista": "5 Seconds of Summer",
+    "title": "Youngblood",
+    "url": "assets/music/5-Seconds-Of-Summer-Youngblood.opus",
+    "img": "assets/images/youngblood.png",
+    "duration": "3:23",
+    "isfavorite": false
+  },
+  {
+    "artista": "Witt Lowry",
+    "title": "Into Your Arms (feat Ava Max)",
+    "url": "assets/music/Witt-Lowry-Into-Your-Arms.opus",
+    "img": "assets/images/intoyourarms.jpg",
+    "duration": "3:23",
+    "isfavorite": false
   }
 ]

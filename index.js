@@ -64,12 +64,14 @@ var flagAleatory = false;
 
 // local storage
 if(!localStorage.getItem('favorites')){
-  guardarDatos();
+  // return
 } else {
   mostrarDatosGuardados()
 }
 
 function guardarDatos() {
+  let colorActual = style.getPropertyValue('--background')
+  localStorage.setItem('background', colorActual)
   localStorage.setItem('favorites', JSON.stringify(favourites))
   localStorage.setItem('actual', actual)
   if(buttonAllSongs.classList.contains("selected")){
@@ -83,6 +85,15 @@ function guardarDatos() {
 function mostrarDatosGuardados() {
   favourites = JSON.parse(localStorage.getItem('favorites'));
   actual = localStorage.getItem('actual');
+
+  let colorActual = localStorage.getItem('background');
+  if(colorActual === '' || '#e0e5ec') {
+    setThemeLight();
+  }
+  if(colorActual === "#454c74") {
+    setThemeDark();
+  }
+
   let listaGuardada = localStorage.getItem('lista');
   switch(listaGuardada) {
     case 'all':
@@ -436,21 +447,27 @@ function adelantar(e) {
 }
 function handleSwitchTheme() {
   let colorActual = style.getPropertyValue('--background');
-  console.log(colorActual);
   if(colorActual === '' || '#e0e5ec') {
-    style.setProperty('--background', '#454c74');
-    style.setProperty('--color', '#fffb'); 
-    style.setProperty('--colorSvg', '#abcb'); 
-    style.setProperty('--light', '#505883'); 
-    style.setProperty('--shadow', '#2f375a');
-    circleButtonTheme.classList.add('active');
+    setThemeDark();
   }
   if(colorActual === "#454c74") {
-    style.setProperty('--background', '#e0e5ec');
-    style.setProperty('--color', '#000b'); 
-    style.setProperty('--colorSvg', '#abc9'); 
-    style.setProperty('--light', '#fff9'); 
-    style.setProperty('--shadow', '#abc9'); 
-    circleButtonTheme.classList.remove('active');
+    setThemeLight();
   }
+  guardarDatos();
+}
+function setThemeLight() {
+  style.setProperty('--background', '#e0e5ec');
+  style.setProperty('--color', '#000b'); 
+  style.setProperty('--colorSvg', '#abc9'); 
+  style.setProperty('--light', '#fff9'); 
+  style.setProperty('--shadow', '#abc9'); 
+  circleButtonTheme.classList.remove('active');
+}
+function setThemeDark() {
+  style.setProperty('--background', '#454c74');
+  style.setProperty('--color', '#fffb'); 
+  style.setProperty('--colorSvg', '#abcb'); 
+  style.setProperty('--light', '#505883'); 
+  style.setProperty('--shadow', '#2f375a');
+  circleButtonTheme.classList.add('active');
 }
