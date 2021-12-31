@@ -54,13 +54,14 @@ progressBarContainer.addEventListener("click", adelantar);
 
 //variables de la aplicacion
 let actual = 0;
-var estado = 0;
+let estado = 0;
 var playlist = [];
 var datalist = [];
 var favourites = [];
 var progress = 0;
 var runProgressBar;
 var flagAleatory = false;
+let preList = [];
 
 // local storage
 if(!localStorage.getItem('favorites')){
@@ -72,8 +73,11 @@ if(!localStorage.getItem('favorites')){
 function guardarDatos() {
   let colorActual = style.getPropertyValue('--background')
   localStorage.setItem('background', colorActual)
+  localStorage.setItem('datalist', JSON.stringify(datalist))
   localStorage.setItem('favorites', JSON.stringify(favourites))
   localStorage.setItem('actual', actual)
+  localStorage.setItem('estado', estado)
+  localStorage.setItem('flagAleatory', flagAleatory)
   if(buttonAllSongs.classList.contains("selected")){
     localStorage.setItem('lista', 'all')
   }
@@ -83,8 +87,10 @@ function guardarDatos() {
   }
 }
 function mostrarDatosGuardados() {
+  datalist = JSON.parse(localStorage.getItem('datalist'));
   favourites = JSON.parse(localStorage.getItem('favorites'));
   actual = localStorage.getItem('actual');
+  estado = parseInt(localStorage.getItem('estado'));
 
   let colorActual = localStorage.getItem('background');
   if(colorActual === '' || '#e0e5ec') {
@@ -97,17 +103,26 @@ function mostrarDatosGuardados() {
   let listaGuardada = localStorage.getItem('lista');
   switch(listaGuardada) {
     case 'all':
-      datalist = playlist;
+      // datalist = playlist;
       buttonAllSongs.classList.add("selected");
       buttonFavouritesSongs.classList.remove("selected");
       break;
     case 'favorites':
-      datalist = favourites;
+      // datalist = favourites;
       buttonAllSongs.classList.remove("selected");
       buttonFavouritesSongs.classList.add("selected");
       break;
   }
+  flagAleatory = localStorage.getItem('flagAleatory');
+  console.log(datalist);
+
+  if(flagAleatory === 'true') {
+    buttonAleatory.classList.add("active");
+  } else {
+    buttonAleatory.classList.remove("active");
+  }
   actualizarCancion;
+  uiButtonRepeat()
 }
 
 //conexion con la API
@@ -133,7 +148,7 @@ fetch("./playlist.json")
       idIncrementer++;
       return item;
     });
-    if(!localStorage.getItem('favorites') || !localStorage.getItem('actual')){
+    if(!localStorage.getItem('datalist')){
       datalist = playlist;
     } else {
       mostrarDatosGuardados()
@@ -149,10 +164,16 @@ fetch("./playlist.json")
     putInfoToList();
   });
   
-  function putInfoToList() {
+function putInfoToList() {
+  let listToPrinted = [];
+  if(buttonAllSongs.classList.contains("selected")) {
+    listToPrinted = playlist;
+  } else if(buttonFavouritesSongs.classList.contains("selected")) {
+    listToPrinted = favourites;
+  }
   list.innerHTML = '';
   let html = "";
-  datalist.forEach(song => {
+  listToPrinted.forEach(song => {
     html += `
     <div id="${song.id}" class="song">
       <img src="${song.img}" alt="">
@@ -281,16 +302,24 @@ function runBar(){
 }
 
 function showListAll() {
-  datalist = playlist;
-  putInfoToList();
+  datalist = preList;
   buttonAllSongs.classList.add("selected");
   buttonFavouritesSongs.classList.remove("selected");
+  putInfoToList();
+  // if(flagAleatory){
+  //   flagAleatory = false;
+  //   aleatory();
+  // } else {
+  //   flagAleatory = true;
+  //   aleatory();
+  // }
 }
 function showListFavourites() {
+  preList = datalist;
   datalist = favourites;
-  putInfoToList();
   buttonAllSongs.classList.remove("selected");
   buttonFavouritesSongs.classList.add("selected");
+  putInfoToList();
 }
 
 function showList() {
@@ -341,6 +370,11 @@ function repeat(){
   if(estado >= 3) {
     estado = 0
   }
+  uiButtonRepeat()
+  guardarDatos()
+}
+
+function uiButtonRepeat() {
   switch(estado) {
     case 0:
       buttonRepeat.classList.remove("active");
@@ -412,7 +446,8 @@ function isFavorite() {
 
 function aleatory() {
   if(flagAleatory){
-    buttonFavouritesSongs.classList.contains("selected") ? datalist = favourites : datalist = playlist;    
+    actual = datalist[actual].uid;
+    buttonFavouritesSongs.classList.contains("selected") ? datalist = favourites : datalist = playlist;
     putInfoToList();
     flagAleatory = false;
     buttonAleatory.classList.remove("active");
@@ -439,6 +474,7 @@ function aleatory() {
     flagAleatory = true;
     buttonAleatory.classList.add("active");
   }
+  guardarDatos();
 }
 
 function adelantar(e) {
